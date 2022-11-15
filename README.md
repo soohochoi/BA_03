@@ -17,5 +17,5 @@
 - Binary classification 같은경우는 A,B라는 새로운 데이터가 들어오면 양품(o)라고 분류할수있습니다. 
 - 하지만 Novelty detection에서도 새로운 데이터 A,B가 들어오면 불량품(x)라고 해야할까요? 정답은 X입니다. Novelty detection에서는 양품(o)이 아니다.하고 이야기해야 정확합니다. 
   
-
- 
+이상치 탐지의 가정은 다음과 같습니다. 
+먼저 normal data 
