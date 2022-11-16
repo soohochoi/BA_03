@@ -12,10 +12,10 @@
 
 그럼 나아가서 **이상치 탐지문제는 이상치인것과 아닌것을 판단하는것이니 분류문제인가?** 이렇게 질문할수도 있다고 생각합니다. 혹시 이 질문에 대해선 어떻게 생각하시나요?
 다음 아래의 그림을 보면서 한번 생각해보면 좋을것같습니다. 
-<p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/201927001-bc4bdacd-3c20-43cf-8c46-77602ab086bd.png">
+<p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/202180469-7e40b62a-0a72-43e8-b387-399c01b09d9f.png">
 
-- Binary classification 같은경우는 A,B라는 새로운 데이터가 들어오면 양품(o)라고 분류할수있습니다. 
-- 하지만 Novelty detection에서도 새로운 데이터 A,B가 들어오면 불량품(x)라고 해야할까요? 정답은 X입니다. Novelty detection에서는 양품(o)이 아니다.하고 이야기해야 정확합니다. 
+
+- 위 그림을 참고하면 Binary classification 같은경우는 A,B라는 새로운 데이터가 들어오면 양품(o)라고 분류할수있습니다. 
+- 하지만 Anomaly detection에서도 새로운 데이터 A,B가 들어오면 불량품(x)라고 해야할까요? 정답은 X입니다. Anomaly detection에서는 양품(o)이 아니다.하고 이야기해야 정확합니다. 
   
-이상치 탐지의 가정은 다음과 같습니다. 
-먼저 normal data 
+또한 Classification과 Anomaly detection은 양품데이터가 불량품데이터 보다 상당히 많다는 가정하에서 training방식에서 어느정도 차이가 있습니다. Classification은 양품과 불량품 둘다 train 시키지만 Anomaly detection에서는 양품만 train을 시킵니다. 
