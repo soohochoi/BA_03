@@ -17,5 +17,11 @@
 
 - 위 그림을 참고하면 Binary classification 같은경우는 A,B라는 새로운 데이터가 들어오면 양품(o)라고 분류할수있습니다. 
 - 하지만 Anomaly detection에서도 새로운 데이터 A,B가 들어오면 불량품(x)라고 해야할까요? 정답은 X입니다. Anomaly detection에서는 양품(o)이 아니다.하고 이야기해야 정확합니다. 
-  
-또한 Classification과 Anomaly detection은 양품데이터가 불량품데이터 보다 상당히 많다는 가정하에서 training방식에서 어느정도 차이가 있습니다. Classification은 양품과 불량품 둘다 train 시키지만 Anomaly detection에서는 양품만 train을 시킵니다. 
+
+<p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/202186745-6811d21f-ef0e-4c6c-8b24-8364a06c1c45.png">
+
+위 그림을 참고하시면 Classification과 Anomaly detection은 양품데이터가 불량품데이터 보다 상당히 많다는 가정하에서 training방식에서도 차이가 있습니다. Classification은 양품과 불량품 둘다 train 시키지만 Anomaly detection에서는 양품만 train을 시킵니다. 
+
+그럼 언제 Classficiation을 사용해야하고 언제 Anomaly detection을 사용하면 좋을까요? 강필성교수님께서 가르쳐주신내용에 따라 아래의 그림을 참고하면 좋을듯합니다.
+보통은 데이터의 imbalance가 1:99처럼 극심하게 발생 되고 소수범주에 대한 예시들이 충분히 있지 않으면 보통 최후의 보류로써 Anomaly Detection을 사용한다고 합니다. 그러나 데이터의 imblance가 컸어도 소수범주에 대한 예시들이 충분히 있으면 SMOTE와 같은 여러가지 sampling기법을 통해 데이터의 balance를 맞추어 줍니다. 
+<p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/202188297-8a249519-a4dd-4151-afe3-9c9f78d047c6.png">
