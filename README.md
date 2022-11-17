@@ -161,23 +161,24 @@ plt.show()
 ```
 <p align="center"><img width="700" alt="image" src="https://user-images.githubusercontent.com/97882448/202349441-b84e1e14-4cd5-4703-a606-2e3fde8b4103.png">
   
-정상과 사기거래의 거래량과 금액을 하나의 그래프로 겹쳐서 그려봄 x축을 거래금액으로 설정하고 y축을 거래횟수의 퍼센티지인데 확실히 차이가 난다고 볼수있음
+정상과 사기거래의 거래량과 금액을 하나의 그래프로 겹쳐서 그려봄 x축을 거래금액으로 설정하고 y축을 거래횟수의 %인데 확실히 차이가 난다고 볼수있음
 
 ```python 
 #정상거래와 사기거래의 시간(초)에 따른 거래량을 알아보고자함
-#sub plot이 2개의 graph가 그릴수있도록 설정해주고 x축을 공유하도록 설정함
+#sub plot이 2개의 graph가 그릴수있도록 설정해주고  x축을 설정함
 function,(ax1, ax2) = plt.subplots(2, 1, sharex=True)
 function.suptitle('Time of transaction and Amount by class')
 #시간에 따른 사기거래의 거래량
-ax1.scatter(frauds.Time, frauds.Amount)
+ax1.scatter(frauds.Time, frauds.Amount,color="red")
 ax1.set_title('Fraud Class')
 #시간에 따른 정상거래의 거래량
-ax2.scatter(normal.Time, normal.Amount)
+ax2.scatter(normal.Time, normal.Amount,color="skyblue")
 ax2.set_title('Normal Class')
 
 plt.xlabel('Time_(Sec)')
 plt.ylabel('Amount')
 plt.show()
 ```
-정상거래와 사기거래의 시간(초)에 따른 거래량을 알아보려고 x축을 공유하여 사기와 정상거래가 어떤 부분이 다른지 알아보고자함
-결과적으로, 정상거래나 사기거래나 시간에 비례해서 좋아보이진 않아보임
+<p align="center"><img width="700" alt="image" src="https://user-images.githubusercontent.com/97882448/202351958-185b9e8e-b26d-443e-b8d2-866b7dcac6ae.png">
+  
+정상거래와 사기거래의 시간(초)에 따른 거래량을 알아보려고 x축을 공유하여 사기와 정상거래가 어떤 부분이 다른지 알아보고자하였으나 결과적으로, 정상거래나 사기거래나 시간에 비례해서 좋아보이진 않아보임
