@@ -298,6 +298,7 @@ normal_error_df = error_df[(error_df['true_class']== 0) & (error_df['reconstruct
 normal_error_df= ax.hist(normal_error_df.reconstruction_error.values, bins=30, color = "skyblue")
 ```
 <p align="center"><img width="450" alt="image" src="https://user-images.githubusercontent.com/97882448/202396791-24e43a2f-a2e4-4eae-acf4-37113207e563.png">
+  
 정상데이터의 reconstruction_error분포는 위 그림과 같음
  
 ```python 
@@ -308,9 +309,86 @@ fraud_error_df = error_df[error_df['true_class'] == 1]
 fraud_error_df = ax.hist(fraud_error_df.reconstruction_error.values, bins=30 ,color = "red")
 ```  
 <p align="center"><img width="450" alt="image" src="https://user-images.githubusercontent.com/97882448/202399705-a624b26e-07a9-494e-a197-cefc9bd3d591.png">
+  
 사기데이터의 reconstruction_error분포는 위 그림과 같음
  
+```python 
+#sklearn의 기법들 
+from sklearn.metrics import (confusion_matrix, precision_recall_curve, auc,
+                             roc_curve, recall_score, classification_report, f1_score,
+                             precision_recall_fscore_support)
+fpr, tpr, thresholds = roc_curve(error_df.true_class, error_df.reconstruction_error)
+roc_auc = auc(fpr, tpr)
+
+plt.title('ROC')
+#AUROC를 계산
+plt.plot(fpr, tpr, label='AUC = %0.4f'% roc_auc)
+plt.legend(loc='lower right')
+plt.plot([0,1],[0,1],'r--')
+plt.xlim([-0.01, 1])
+plt.ylim([0, 1.01])
+plt.ylabel('True Positive Rate(TPR)')
+plt.xlabel('False Positive Rate(FPR)')
+plt.show();
+
+precision, recall, th = precision_recall_curve(error_df.true_class, error_df.reconstruction_error)
+plt.plot(recall, precision, 'pink', label='Precision-Recall curve')
+plt.title('Recall vs Precision')
+plt.xlabel('Recall')
+plt.ylabel('Precision')
+plt.show()
+
+plt.plot(th, precision[1:], 'b', label='Threshold-Precision curve')
+plt.title('Precision for different threshold values')
+plt.xlabel('Threshold')
+plt.ylabel('Precision')
+plt.show()
   
+plt.plot(th, recall[1:], 'b', label='Threshold-Recall curve')
+plt.title('Recall for different threshold values')
+plt.xlabel('Reconstruction error')
+plt.ylabel('Recall')
+plt.show()
+```
+<p align="center"><img width="1000" alt="image" src="https://user-images.githubusercontent.com/97882448/202400810-310a38e9-1724-4c93-8577-215ed295cab4.png">
+
+위 그림을 보면 Reconstruction error가 증가할수록 정밀도가 올라가는 것을 알수 있음
+
+```python 
+threshold = 3
+groups = error_df.groupby('true_class')
+fig, ax = plt.subplots()
+
+for name, group in groups:
+    ax.plot(group.index, group.reconstruction_error, marker='o', ms=3.5, linestyle='',
+            label= "Fraud" if name == 1 else "Normal")
+ax.hlines(threshold, ax.get_xlim()[0], ax.get_xlim()[1], colors="r", zorder=100, label='Threshold')
+ax.legend()
+plt.title("Reconstruction error for different classes")
+plt.ylabel("Reconstruction error")
+plt.xlabel("Data point index")
+plt.show();
+```
+![image](https://user-images.githubusercontent.com/97882448/202403830-cd68a650-5c4a-42b5-a96c-7cef31998fa3.png)
+
+```python 
+y_pred = [1 if e > threshold else 0 for e in error_df.reconstruction_error.values]
+conf_matrix = confusion_matrix(error_df.true_class, y_pred)
+plt.figure(figsize=(12, 12))
+sns.heatmap(conf_matrix, xticklabels=LABELS, yticklabels=LABELS, annot=True, fmt="d");
+plt.title("Confusion matrix")
+plt.ylabel('True class')
+plt.xlabel('Predicted class')
+plt.show()
+```
+<p align="center"><img width="300" alt="image" src="https://user-images.githubusercontent.com/97882448/202404021-162db7c1-56aa-494a-9f5c-58eb9ed4cef0.png">
+
+threshold에 따른 confusion matrix임
+
+- ### 결론
+
+여기서 사용한 데이터셋은 imblance 하기에 높은 정확도(accuracy)만 보면 좋은 모델이라고 착각할수 있지만 낮은 재현률(recall)과 정밀도(precision)를 보임
+recall과 precision을 개선하기 위한 것으로는 다른 이상치탐지방법이나 AE의 구조를 바꿔보면 좋을것 같음 
 ---
  ### Reference
  1. https://sustaining-starflower-aff.notion.site/2022-2-0e068bff3023401fa9fa13e96c0269d7 <강필성교수님 자료>
