@@ -59,5 +59,4 @@ AE의 구조는 Loss function은 Reproduction된 출력 값에서 입력 값을 
 
 [Credit Card Fraud Dectection 다운로드](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
 
-
-데이터는 비
+데이터들의 feature는 Time(시간), Amount(거래 금액), V1~V28(개인정보로 인해 공개되어지지 않은값임 PCA로 변환된 값), Class(사기여부로 1이면 사기를 당했고 0이면 정상임)로 구성되었다.
