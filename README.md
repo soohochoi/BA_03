@@ -8,6 +8,9 @@
 ### 1. [BA_03 Anomaly Detection(이상치 탐지)_개념설명](#ba_03-anomaly-detection이상치-탐지_개념설명)
 ### 2. [BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning Auto encoder](#ba_03-anomaly-detection이상치-탐지_model_based_learning-auto-encoder)
 ### 3. [BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning Auto encoder 실습코드](ba_03-anomaly-detection이상치-탐지_model_based_learning-auto-encoder)
+  #### 3.1. [데이터 설명](데이터_설명)
+  #### 3.2. [코드](코드)
+  #### 3.3. [결론](결론)
 
 ## BA_03 Anomaly Detection(이상치 탐지)_개념설명
 이상치탐지는 기존 데이터와는 다른 메커니즘으로 생성된 데이터의 샘플입니다. 위 소제목에서는 이상치탐지를 Anomaly Detection이라고 소개했지만 사실 이상치는 **Anomaly,Novelty**로도 사용됩니다. 단어의 의미를 살표보면 **Anomaly**는 약간 부정적 의미를 내포하고 있고 **Novelty**는 긍정적의미를 내포하고있습니다. 이러한 기준은 어떠한 데이터에 적용하나에 따라 다를수 있습니다.예를들면 공장에서는 양품과 불량품이 존재하는데 거기선 불량품이 부정적인 의미를 내포하기에 Anomaly라는 표현이 좀더 적합합니다. 하지만 주식시장에선 갑자기 급등하는 패턴이 분석해야하는 대상이기에 이럴땐 긍정적인 Novelty라는 단어가 알맞습니다.
@@ -386,9 +389,10 @@ plt.show()
 threshold에 따른 confusion matrix임
 
 - ### 결론
-
+  
 여기서 사용한 데이터셋은 imblance 하기에 높은 정확도(accuracy)만 보면 좋은 모델이라고 착각할수 있지만 낮은 재현률(recall)과 정밀도(precision)를 보임
 recall과 precision을 개선하기 위한 것으로는 다른 이상치탐지방법이나 AE의 구조를 바꿔보면 좋을것 같음 
+  
 ---
  ### Reference
  1. https://sustaining-starflower-aff.notion.site/2022-2-0e068bff3023401fa9fa13e96c0269d7 <강필성교수님 자료>
