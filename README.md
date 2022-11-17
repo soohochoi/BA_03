@@ -94,7 +94,7 @@ df.head()
 <p align="center"><img width="680" alt="image" src="https://user-images.githubusercontent.com/97882448/202340245-bfe970b3-56e3-4569-8e79-0b5712cb1ac6.png">
 
 ```python
-#데이터를 불러오고 df.shape를통해 데이터의 형태를 확인함
+#df.shape를통해 데이터의 형태를 확인함
 df.shape
 #데이터에 Null값이 있는지 확인해봄
 df.isnull().values.any()
@@ -102,3 +102,37 @@ df.isnull().values.any()
 RANDOM_SEED = 2022
 LABELS = ["Normal", "Fraud"]
 ```
+데이터의 형태 및 Null값이 있는지 확인하고 Random_SEED를 설정해줌 출력값은 값이 첨부한 Jupyter_Notebook을 통해 확인가능함
+
+```python
+count_classes = pd.value_counts(df['Class'])
+#rot은 글자를 회전 시킴
+count_classes.plot(kind = 'bar', rot=45, color="lightskyblue")
+plt.title("Transaction class distribution")
+plt.xticks(range(2), LABELS)
+plt.xlabel("Class")
+plt.ylabel("Frequency");
+```
+<p align="center"><img width="500" alt="image" src="https://user-images.githubusercontent.com/97882448/202346218-c8e15721-f581-477c-82bd-ae15b3381dc1.png">
+
+bar plot으로 그려보려고하지만 Fraud의 갯수가 너무 작아서 bar plot은 좋은그림이 아닌것 같음
+
+```python
+fraud = df[df.Class == 1]
+normal = df[df.Class == 0]
+fraud.shape #(492, 31)
+normal.shape #(284315, 31)
+
+#Class의 갯수를 세수 표로 만듦 또한 reset_index()를 통하여 index에 대한 표도 만들어줌 
+table = df['Class'].value_counts().to_frame().reset_index()
+# 전체의 데이터에서 몇 프로를 차지 하는지 표를 추가하고 소수점 4째자리까지 추출
+table['Percent(%)'] = table["Class"].apply(lambda x : round(100*float(x) / len(data), 4))
+#index와 Class의 이름을 바꾸어줌
+table= table.rename(columns = {"index" : "Target", "Class" : "Count"})
+
+table
+```
+갯수를 보아하니 왜 barplot에 fraud가 잘 나오지 않았는지 알것 같음 따라서 table을 생성해봄
+  
+<p align="center"><img width="207" alt="image" src="https://user-images.githubusercontent.com/97882448/202347439-16aeef42-af79-454c-98a4-3e6bcedd830f.png">
+
