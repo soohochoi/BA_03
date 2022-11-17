@@ -93,3 +93,12 @@ df.head()
 ```
 <p align="center"><img width="680" alt="image" src="https://user-images.githubusercontent.com/97882448/202340245-bfe970b3-56e3-4569-8e79-0b5712cb1ac6.png">
 
+```python
+#데이터를 불러오고 df.shape를통해 데이터의 형태를 확인함
+df.shape
+#데이터에 Null값이 있는지 확인해봄
+df.isnull().values.any()
+# RANDOM_SEED와 Class의 LABELS설정
+RANDOM_SEED = 2022
+LABELS = ["Normal", "Fraud"]
+```
