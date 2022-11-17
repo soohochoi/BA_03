@@ -1,4 +1,4 @@
-# BA_03
+# BA_03 Anomaly Detection(이상치 탐지)
 
 <p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/201814625-adf72ae0-4f94-4550-98f1-4986626f82b6.PNG">
 
@@ -36,4 +36,15 @@
 ## BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning
 이상치 탐지가 어떤것인지 아셨나요? 그럼 이번에는 모델을 통한 이상치탐지기법을 알아보려고합니다. 
 
-### BA_03 Auto encoder
+### BA_03 Auto encoder(AE)
+<p align="center"><img width="500" alt="image" src="https://user-images.githubusercontent.com/97882448/202328901-561ae8f2-141d-48e6-b2d8-46e9bb843943.png">
+<p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/202329709-f4b95401-8be7-4202-87bf-c33de8366391.png">
+
+오토인코더(AE)는 입력층과 출력이 동일한 인공 신경망 구조입니다. 단 입력층과 출력층의 차원은 동일하지만 은닉층은 입력층의 차원의 수를 넘어 설수 없습니다. 쉽게 이야기하여서 콩심은데 콩나고 팥심은데 팥이나는 구조입니다. 그럼 궁금중이 생기실텐데 왜 콩을 넣어서 콩이 나오는 모델을 왜 사용할까요? 이유는 크게 2가지가 있습니다. 
+1. 차원축소의 목적으로 AE를 학습시켜 성능을 확인 한 뒤 잠재 벡터인 feature를 다른 기계학습모형의 인풋으로 사용함
+2. 입력정보와 AE출력 정보간 차이를 이용한 분석을 통해 이상치를 분석함
+
+<p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/202330000-5d9bb67a-f862-4452-9c15-df7703a783fc.png">
+
+AE의 구조는 Loss function은 Reproduction된 출력 값에서 입력 값을 뺀 값으로 이루어지며 anomaly score라고 명명되어집니다. 위에 그림을 참고하시면 아까전에 이야기한것처럼 h(x)는 𝑥 ̂  와 𝑥의 차원보다 크지 않아야 합니다.  즉, h(x)는 중요한 입력 값의 정보를 축약 해야합니다.  그러면 위 그림에 without bottle layer처럼 h(x)의 차원 = 𝑥 의 차원과 같으면 어떻게 될까요? without bottle layer처럼 입력층(=출력층)과  입력정보와 출력정보를 히든레이어의 수와 같게 설정을 하면 입력정보와 출력정보를 그대로 외워 버리기에 overfitting이 발생됩니다. 따라서 With bottle layer처럼 입력 정보와 출력정보보다 히든레이어수의 차원이 작아야 합니다.
+
