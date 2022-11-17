@@ -190,4 +190,68 @@ data = df.drop(['Time'], axis=1)
 #거래량을 StandardScaler를 통해 값들을 스케일링 함, 이유는 평균을 제거하고 데이터를 단위 분산으로 조정하기에 이상치가 있다면 데이터의 확산은 매우 달라져서 이상치에 매우 민감
 data['Amount'] = StandardScaler().fit_transform(data['Amount'].values.reshape(-1, 1))
 ```
-먼저, 시간이 이상치탐지에 그렇게 중요한 요소가 아니라고 생각되어 시간열을  drop하고 amount인 거래량을 StandardScaler를 통해 스케일링하여 데이터가 이상치에 매우 민감하게 반응하도록 
+먼저, 시간이 이상치탐지에 그렇게 중요한 요소가 아니라고 생각되어 시간열을  drop하고 amount인 거래량을 StandardScaler를 통해 스케일링하여 데이터가 이상치에 매우 민감하게 반응하도록 만듦
+  
+```python  
+X_train, X_test = train_test_split(data, test_size=0.3, random_state=RANDOM_SEED)
+#이상치탐지에는 중요한특성이 있는데 train데이터는 정상인 데이터만 사용함
+X_train = X_train[X_train.Class == 0]
+X_train = X_train.drop(['Class'], axis=1)
+
+y_test = X_test['Class']
+X_test = X_test.drop(['Class'], axis=1)
+
+X_train = X_train.values
+X_test = X_test.values
+
+X_train.shape
+```
+이제 데이터들을 훈련시켜야 함 이상치탐지할때 중요한요소가 있는데 그것중 하나는 **train데이터는 정상 데이터**만 사용해야함
+test_size를 0.3으로 설정하고 random_state는 아까 설정한 2022로 설정됨 그러면 X_train.shape은 (199000, 29)로 설정됨
+  
+```python   
+#X_train의 열의 갯수:28개
+input_dim = X_train.shape[1]
+
+encoding_dim = 14
+
+input_layer = Input(shape=(input_dim, ))
+#regularizers를 L1으로 설정 하였음
+encoder = Dense(encoding_dim, activation="tanh", 
+                activity_regularizer=regularizers.l1(10e-5))(input_layer)
+encoder = Dense(int(encoding_dim / 2), activation="relu")(encoder)
+decoder = Dense(int(encoding_dim / 2), activation='tanh')(encoder)
+decoder = Dense(input_dim, activation='relu')(decoder)
+autoencoder = Model(inputs=input_layer, outputs=decoder)
+autoencoder.summary()
+```
+<p align="center"><img width="578" alt="image" src="https://user-images.githubusercontent.com/97882448/202365189-72e2aa85-c61a-4cc4-a925-ba496ef91c17.png">
+
+위에 Autoencoder는 4개의 fully connected layer로 만들어져 있으며, 각 layer는 14, 7, 7, 29개로 구성됨 
+모델을 요약하면 위와 같은결과가 나옴
+
+```python   
+nb_epoch = 50
+batch_size = 32
+#오토인코더 컴파일함
+autoencoder.compile(optimizer='adam', 
+                    loss='mean_squared_error', 
+                    metrics=['accuracy'])
+#ModelCheckpoint로 성능 좋은모델을 저장함
+checkpointer = ModelCheckpoint(filepath="model.h",
+                               verbose=0,
+                               save_best_only=True)
+#TensorBoard는 TensorFlow에서 발생한 로그를 표시함
+tensorboard = TensorBoard(log_dir='./logs',
+                          histogram_freq=0,
+                          write_graph=True,
+                          write_images=True)
+
+history = autoencoder.fit(X_train, X_train,
+                    epochs=nb_epoch,
+                    batch_size=batch_size,
+                    shuffle=True,
+                    validation_data=(X_test, X_test),
+                    verbose=1,
+                    callbacks=[checkpointer, tensorboard]).history
+```
