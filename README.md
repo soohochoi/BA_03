@@ -384,7 +384,7 @@ plt.ylabel('True class')
 plt.xlabel('Predicted class')
 plt.show()
 ```
-<p align="center"><img width="300" alt="image" src="https://user-images.githubusercontent.com/97882448/202404021-162db7c1-56aa-494a-9f5c-58eb9ed4cef0.png">
+<p align="center"><img width="500" alt="image" src="https://user-images.githubusercontent.com/97882448/202404021-162db7c1-56aa-494a-9f5c-58eb9ed4cef0.png">
 
 threshold에 따른 confusion matrix임
 
