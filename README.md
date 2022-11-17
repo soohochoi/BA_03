@@ -62,3 +62,26 @@ AE의 구조는 Loss function은 Reproduction된 출력 값에서 입력 값을 
 데이터들의 feature는 Time(시간), V1~V28(개인정보로 인해 공개되어지지 않은값임 PCA로 변환된 값), Amount(거래 금액), Class(사기여부로 1이면 사기를 당했고 0이면 정상임)로 구성되었으며 Null값은 없는 데이터이다.
 
 - ### 코드 
+
+```python
+#필요한 라이브러리 불러오기
+import pandas as pd
+import numpy as np
+import pickle
+import matplotlib.pyplot as plt
+from scipy import stats
+import tensorflow as tf
+import seaborn as sns
+from pylab import rcParams
+from sklearn.model_selection import train_test_split
+from keras.models import Model, load_model
+from keras.layers import Input, Dense
+from keras.callbacks import ModelCheckpoint, TensorBoard
+from keras import regularizers
+
+%matplotlib inline
+# 시각화 라이브러리 설정
+sns.set(style='whitegrid', palette='muted', font_scale=1.5)
+rcParams['figure.figsize'] = 14, 8
+```
+필요한 모듈 및 라이브러리를 불러오고 그래프의 스타일이니 색깔, 사이즈등을 미리 설정한다.
