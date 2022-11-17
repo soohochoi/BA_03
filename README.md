@@ -85,3 +85,11 @@ sns.set(style='whitegrid', palette='muted', font_scale=1.5)
 rcParams['figure.figsize'] = 14, 8
 ```
 필요한 모듈 및 라이브러리를 불러오고 그래프의 스타일이니 색깔, 사이즈등을 미리 설정한다.
+
+```python
+#데이터를 불러오고 df.head()를 통해 데이터의 형태를 확인해봄
+df = pd.read_csv("creditcard.csv")
+df.head()
+```
+<p align="center"><img width="680" alt="image" src="https://user-images.githubusercontent.com/97882448/202340245-bfe970b3-56e3-4569-8e79-0b5712cb1ac6.png">
+
