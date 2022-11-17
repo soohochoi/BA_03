@@ -132,7 +132,7 @@ table= table.rename(columns = {"index" : "Target", "Class" : "Count"})
 
 table
 ```
-갯수를 보아하니 왜 barplot에 fraud가 잘 나오지 않았는지 알것 같음 따라서 table을 생성해봄
+갯수를 보아하니 왜 barplot에 fraud가 잘 나오지 않았는지 알것 같음 따라서 table을 생성해보니 아래의 그림처럼 사기거래의 비율이 0.1727% 였던것을 알수 있음
   
 <p align="center"><img width="400" alt="image" src="https://user-images.githubusercontent.com/97882448/202347439-16aeef42-af79-454c-98a4-3e6bcedd830f.png">
 
