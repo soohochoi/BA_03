@@ -134,7 +134,7 @@ table
 ```
 갯수를 보아하니 왜 barplot에 fraud가 잘 나오지 않았는지 알것 같음 따라서 table을 생성해보니 아래의 그림처럼 사기거래의 비율이 0.1727% 였던것을 알수 있음
   
-<p align="center"><img width="300" alt="image" src="https://user-images.githubusercontent.com/97882448/202347439-16aeef42-af79-454c-98a4-3e6bcedd830f.png">
+<p align="center"><img width="250" alt="image" src="https://user-images.githubusercontent.com/97882448/202347439-16aeef42-af79-454c-98a4-3e6bcedd830f.png">
 
 ```python
 #사기거래 금액의 분포
@@ -159,5 +159,6 @@ plt.xlabel("Transaction amount (USD)")
 plt.ylabel("Percentage of transactions");
 plt.show()
 ```
-<p align="center"><img width="500" alt="image" src="https://user-images.githubusercontent.com/97882448/202349441-b84e1e14-4cd5-4703-a606-2e3fde8b4103.png">
+<p align="center"><img width="700" alt="image" src="https://user-images.githubusercontent.com/97882448/202349441-b84e1e14-4cd5-4703-a606-2e3fde8b4103.png">
   
+정상과 사기거래의 거래량과 금액을 하나의 그래프로 겹쳐서 그려봄 x축을 거래금액으로 설정하고 y축을 거래횟수의 퍼센티지인데 확실히 차이가 난다고 볼수있음
