@@ -134,5 +134,30 @@ table
 ```
 갯수를 보아하니 왜 barplot에 fraud가 잘 나오지 않았는지 알것 같음 따라서 table을 생성해보니 아래의 그림처럼 사기거래의 비율이 0.1727% 였던것을 알수 있음
   
-<p align="center"><img width="400" alt="image" src="https://user-images.githubusercontent.com/97882448/202347439-16aeef42-af79-454c-98a4-3e6bcedd830f.png">
+<p align="center"><img width="300" alt="image" src="https://user-images.githubusercontent.com/97882448/202347439-16aeef42-af79-454c-98a4-3e6bcedd830f.png">
 
+```python
+#사기거래 금액의 분포
+frauds.Amount.describe()
+```
+<p align="center"><img width="251" alt="image" src="https://user-images.githubusercontent.com/97882448/202348405-5e9b0900-092c-4c43-a648-985762d9f58d.png">
+  
+```python
+#정상거래 금액의 분포
+normal.Amount.describe()
+```
+<p align="center"><img width="262" alt="image" src="https://user-images.githubusercontent.com/97882448/202348460-6888732c-55f7-4fea-9f24-2d57d3951ee2.png">
+
+```python
+#정상과 사기거래의 거래량과 금액을 graph로 나타냄
+bins = np.linspace(200, 2500, 200)
+plt.hist(normal.Amount, bins=bins, alpha=1, density=True, label='Normal')
+plt.hist(frauds.Amount, bins=bins, alpha=1, density=True, label='Fraud')
+plt.legend(loc='upper right')
+plt.title("Transaction amount and Percentage of transactions")
+plt.xlabel("Transaction amount (USD)")
+plt.ylabel("Percentage of transactions");
+plt.show()
+```
+<p align="center"><img width="500" alt="image" src="https://user-images.githubusercontent.com/97882448/202349441-b84e1e14-4cd5-4703-a606-2e3fde8b4103.png">
+  
