@@ -46,5 +46,10 @@
 
 <p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/202330000-5d9bb67a-f862-4452-9c15-df7703a783fc.png">
 
-AE의 구조는 Loss function은 Reproduction된 출력 값에서 입력 값을 뺀 값으로 이루어지며 anomaly score라고 명명되어집니다. 위에 그림을 참고하시면 아까전에 이야기한것처럼 h(x)는 𝑥 ̂  와 𝑥의 차원보다 크지 않아야 합니다.  즉, h(x)는 중요한 입력 값의 정보를 축약 해야합니다.  그러면 위 그림에 without bottle layer처럼 h(x)의 차원 = 𝑥 의 차원과 같으면 어떻게 될까요? without bottle layer처럼 입력층(=출력층)과  입력정보와 출력정보를 히든레이어의 수와 같게 설정을 하면 입력정보와 출력정보를 그대로 외워 버리기에 overfitting이 발생됩니다. 따라서 With bottle layer처럼 입력 정보와 출력정보보다 히든레이어수의 차원이 작아야 합니다.
+AE의 구조는 Loss function은 Reproduction된 출력 값에서 입력 값을 뺀 값으로 이루어지며 anomaly score라고 명명되어집니다. 위에 그림을 참고하시면 아까전에 이야기한것처럼 h(x)는 𝑥 ̂  와 𝑥의 차원보다 크지 않아야 합니다.  즉, h(x)는 중요한 입력 값의 정보를 축약 해야합니다.  그러면 위 그림에 without bottle layer처럼 h(x)의 차원 = 𝑥 의 차원과 같으면 어떻게 될까요? without bottle layer처럼 입력층(=출력층)과  입력정보와 출력정보를 히든레이어의 수와 같게 설정을 하면 입력정보와 출력정보를 그대로 외워 버리기에 overfitting이 발생됩니다. 따라서 With bottle layer처럼 입력 정보와 출력정보보다 히든레이어수의 차원이 작아야 합니다. 
+  
+<p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/202331854-8ddfd278-c22f-49c2-8ae8-bb54ea91036f.png">
+
+이처럼 AE는 중요 feature만을 압축하기에 용량도 작고 품질도 더 좋습니다. 또한 차원의 저주를 예방 할 수 있습니다. 뿐만 아니라 위그림의 기여도를 보시면 복원이 잘 되지 않을 경우, 기여도에 대한 차이도 알수 있습니다. AE또한 단점이 존재합니다. 입력에 대한 약간의 변형에도 모델이 민감하게 반응합니다. 따라서 단점을 보안하기위해 입력에 noise를 첨가해 noise가 제거된 결과값이 나오도록 합니다. 이 과정은 모델을 더욱 robust하게 만들도록 보완합니다. Noise는 보통 Random Gaussian noise가 사용됩니다. 
+
 
