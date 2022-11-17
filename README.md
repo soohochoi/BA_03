@@ -374,6 +374,7 @@ plt.show();
 ```
 ![image](https://user-images.githubusercontent.com/97882448/202403830-cd68a650-5c4a-42b5-a96c-7cef31998fa3.png)
 
+threshold=3으로 잡았을때 주황색은 사기거래데이터이고 파란색은 정상거래데이터임
 ```python 
 y_pred = [1 if e > threshold else 0 for e in error_df.reconstruction_error.values]
 conf_matrix = confusion_matrix(error_df.true_class, y_pred)
