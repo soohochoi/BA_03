@@ -255,3 +255,4 @@ history = autoencoder.fit(X_train, X_train,
                     verbose=1,
                     callbacks=[checkpointer, tensorboard]).history
 ```
+<p align="center"><img width="900" alt="image" src="https://user-images.githubusercontent.com/97882448/202366748-3887551d-32a6-432b-93d2-ab2a38b01111.png">
