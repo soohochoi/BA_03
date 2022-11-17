@@ -52,6 +52,7 @@ AE의 구조는 Loss function은 Reproduction된 출력 값에서 입력 값을 
 
 이처럼 AE는 중요 feature만을 압축하기에 용량도 작고 품질도 더 좋습니다. 또한 차원의 저주를 예방 할 수 있습니다. 뿐만 아니라 위그림의 기여도를 보시면 복원이 잘 되지 않을 경우, 기여도에 대한 차이도 알수 있습니다. AE또한 단점이 존재합니다. 입력에 대한 약간의 변형에도 모델이 민감하게 반응합니다. 따라서 단점을 보안하기위해 입력에 noise를 첨가해 noise가 제거된 결과값이 나오도록 합니다. 이 과정은 모델을 더욱 robust하게 만들도록 보완합니다. Noise는 보통 Random Gaussian noise가 사용됩니다. 
 
-## BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning Auto encorder 실습코드
+## BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning Auto encoder 실습코드
 
 ### 데이터 설명
+이번에 제가 사용할 데이터 세트는 
