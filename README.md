@@ -36,3 +36,4 @@
 ## BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning
 이상치 탐지가 어떤것인지 아셨나요? 그럼 이번에는 모델을 통한 이상치탐지기법을 알아보려고합니다. 
 
+### BA_03 Auto encoder
