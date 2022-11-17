@@ -130,7 +130,7 @@ normal.shape #(284315, 31)
 #Class의 갯수를 세수 표로 만듦 또한 reset_index()를 통하여 index에 대한 표도 만들어줌 
 table = df['Class'].value_counts().to_frame().reset_index()
 # 전체의 데이터에서 몇 프로를 차지 하는지 표를 추가하고 소수점 4째자리까지 추출
-table['Percent(%)'] = table["Class"].apply(lambda x : round(100*float(x) / len(data), 4))
+table['Percent(%)'] = df["Class"].apply(lambda x : round(100*float(x) / len(data), 4))
 #index와 Class의 이름을 바꾸어줌
 table= table.rename(columns = {"index" : "Target", "Class" : "Count"})
 
@@ -264,6 +264,7 @@ history = autoencoder.fit(X_train, X_train,
 ```python 
 #데이터 로드
 autoencoder = load_model('model.h')
+#epoch에 따른 train과 test의 loss함수
 plt.plot(history['loss'])
 plt.plot(history['val_loss'])
 plt.title('model loss')
@@ -271,9 +272,45 @@ plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper right');
 ```
+<p align="center"><img width="900" alt="image" src="https://user-images.githubusercontent.com/97882448/202391533-12fe581d-4e52-4c08-af2b-2a749a371b05.png">
+  
+데이터를 로드 한다음에 위 표를 보면 epoch에 따른 train과 test의 loss함수임
+  
+```python 
+predictions = autoencoder.predict(X_test)
+#np.power(a,b)는 제곱연산을 할때 사용되면 a^b를 뜻함
+mse = np.mean(np.power(X_test - predictions, 2), axis=1)
+error_df = pd.DataFrame({'reconstruction_error': mse,
+                        'true_class': y_test})
+percent=[0.001,0.1,0.9,0.999]
+error_df.describe(percentiles=percent)
+```
+<p align="center"><img width="350" alt="image" src="https://user-images.githubusercontent.com/97882448/202398829-6b707f5d-215d-40ea-be0f-2d14da32ec65.png">
 
-
-
+대부분의 데이터가 정상 데이터이기에 reconstruction_error의 평균도 0.736549밖에 되지 않으나 99.9%는 44.121528로 사기거래라고 나옴
+ 
+```python 
+# 정상데이터의 reconstruction_error분포
+fig = plt.figure()
+#111은 1행째의 1열의 첫 번째라는 의미임
+ax = fig.add_subplot(111)
+normal_error_df = error_df[(error_df['true_class']== 0) & (error_df['reconstruction_error'] < 20)]
+normal_error_df= ax.hist(normal_error_df.reconstruction_error.values, bins=30, color = "skyblue")
+```
+<p align="center"><img width="450" alt="image" src="https://user-images.githubusercontent.com/97882448/202396791-24e43a2f-a2e4-4eae-acf4-37113207e563.png">
+정상데이터의 reconstruction_error분포는 위 그림과 같음
+ 
+```python 
+# 사기데이터의 reconstruction_error분포
+fig = plt.figure()
+ax = fig.add_subplot(111)
+fraud_error_df = error_df[error_df['true_class'] == 1]
+fraud_error_df = ax.hist(fraud_error_df.reconstruction_error.values, bins=30 ,color = "red")
+```  
+<p align="center"><img width="450" alt="image" src="https://user-images.githubusercontent.com/97882448/202399705-a624b26e-07a9-494e-a197-cefc9bd3d591.png">
+사기데이터의 reconstruction_error분포는 위 그림과 같음
+ 
+  
 ---
  ### Reference
  1. https://sustaining-starflower-aff.notion.site/2022-2-0e068bff3023401fa9fa13e96c0269d7 <강필성교수님 자료>
