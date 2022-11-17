@@ -36,7 +36,7 @@
 ## BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning
 이상치 탐지가 어떤것인지 아셨나요? 그럼 이번에는 모델을 통한 이상치탐지기법을 알아보려고합니다. 
 
-### Auto encoder(AE)
+- ### Auto encoder(AE)
 <p align="center"><img width="500" alt="image" src="https://user-images.githubusercontent.com/97882448/202328901-561ae8f2-141d-48e6-b2d8-46e9bb843943.png">
 <p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/202329709-f4b95401-8be7-4202-87bf-c33de8366391.png">
 
@@ -54,5 +54,5 @@ AE의 구조는 Loss function은 Reproduction된 출력 값에서 입력 값을 
 
 ## BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning Auto encoder 실습코드
 
-### 데이터 설명
-이번에 제가 사용할 데이터 세트는 
+- ### 데이터 설명
+이번에 사용되는 데이터 Kaggle에서 제공하는 Credit Card Fraud Dectection입니다. 이 데이터는 2013년 9월에 신용카드 사용자들의 실제 거래기록으로 총 284,807 건의 거래내역이 제공됩니다. 이 중 492건이 사기 거래(Fraud Transaction)이고 사기 거래가 정상 거래에 비해 매우 적은 0.172%로 ‘Highly unbalanced’한 특징을 가진 데이터셋입니다.
