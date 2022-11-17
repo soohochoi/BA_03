@@ -182,3 +182,12 @@ plt.show()
 <p align="center"><img width="700" alt="image" src="https://user-images.githubusercontent.com/97882448/202351958-185b9e8e-b26d-443e-b8d2-866b7dcac6ae.png">
   
 정상거래와 사기거래의 시간(초)에 따른 거래량을 알아보려고 x축을 공유하여 사기와 정상거래가 어떤 부분이 다른지 알아보고자하였으나 결과적으로, 정상거래나 사기거래나 시간에 비례해서 좋아보이진 않아보임
+
+```python 
+from sklearn.preprocessing import StandardScaler
+#시간이 그렇게 중요한 요소가 아니라 판단되어 시간을 지움 
+data = df.drop(['Time'], axis=1)
+#거래량을 StandardScaler를 통해 값들을 스케일링 함, 이유는 평균을 제거하고 데이터를 단위 분산으로 조정하기에 이상치가 있다면 데이터의 확산은 매우 달라져서 이상치에 매우 민감
+data['Amount'] = StandardScaler().fit_transform(data['Amount'].values.reshape(-1, 1))
+```
+먼저, 시간이 이상치탐지에 그렇게 중요한 요소가 아니라고 생각되어 시간열을  drop하고 amount인 거래량을 StandardScaler를 통해 스케일링하여 데이터가 이상치에 매우 민감하게 반응하도록 
