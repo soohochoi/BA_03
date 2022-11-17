@@ -33,10 +33,10 @@
 | A |999,000|1,000|**Classification**|
 | B |9,990|10|**Anomaly detection**|
 
-## BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning
-이상치 탐지가 어떤것인지 아셨나요? 그럼 이번에는 모델을 통한 이상치탐지기법을 알아보려고합니다. 
-
-- ### Auto encoder(AE)
+## BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning Auto encoder
+  
+이상치 탐지가 어떤것인지 아셨나요? 그럼 이번에는 모델을 통한 이상치탐지기법중에 Auto encoder에 대해 알아보려고합니다. 
+  
 <p align="center"><img width="500" alt="image" src="https://user-images.githubusercontent.com/97882448/202328901-561ae8f2-141d-48e6-b2d8-46e9bb843943.png">
 <p align="center"><img width="600" alt="image" src="https://user-images.githubusercontent.com/97882448/202329709-f4b95401-8be7-4202-87bf-c33de8366391.png">
 
