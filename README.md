@@ -355,7 +355,7 @@ plt.show()
 ```
 <p align="center"><img width="1000" alt="image" src="https://user-images.githubusercontent.com/97882448/202400810-310a38e9-1724-4c93-8577-215ed295cab4.png">
 
-위 그림을 보면 Reconstruction error가 증가할수록 정밀도가 올라가는 것을 알수 있음
+위 그림을 보면 AUROC가 0.9406으로 높게 나왔지만 데이터의 imbalance가 심했기때문에 다른것들도 볼 필요가 있음 오른쪽은 p-r curve이고 왼쪽 아래는 precision에 따른 threshold 그래프이다. 또한 오른쪽 아래 그래프는 Reconstruction error가 증가할수록 recall이 감소하는 것을 알수 있음
 
 ```python 
 threshold = 3
