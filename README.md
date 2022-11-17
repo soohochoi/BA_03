@@ -256,3 +256,14 @@ history = autoencoder.fit(X_train, X_train,
                     callbacks=[checkpointer, tensorboard]).history
 ```
 <p align="center"><img width="900" alt="image" src="https://user-images.githubusercontent.com/97882448/202366748-3887551d-32a6-432b-93d2-ab2a38b01111.png">
+
+```python 
+#데이터 로드
+autoencoder = load_model('model.h')
+plt.plot(history['loss'])
+plt.plot(history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc='upper right');
+```
