@@ -55,4 +55,9 @@ AE의 구조는 Loss function은 Reproduction된 출력 값에서 입력 값을 
 ## BA_03 Anomaly Detection(이상치 탐지)_Model_based_learning Auto encoder 실습코드
 
 - ### 데이터 설명
-이번에 사용되는 데이터 Kaggle에서 제공하는 Credit Card Fraud Dectection입니다. 이 데이터는 2013년 9월에 신용카드 사용자들의 실제 거래기록으로 총 284,807 건의 거래내역이 제공됩니다. 이 중 492건이 사기 거래(Fraud Transaction)이고 사기 거래가 정상 거래에 비해 매우 적은 0.172%로 ‘Highly unbalanced’한 특징을 가진 데이터셋입니다.
+이번에 사용되는 데이터는 Kaggle에서 제공하는 Credit Card Fraud Dectection입니다. 이 데이터는 2013년 9월에 신용카드 사용자들의 실제 거래기록으로 총 284,807 건의 거래내역이 제공됩니다. 이 중 정상거래(Normal Transaction)는 284,315건이고 492건이 사기 거래(Fraud Transaction)입니다. 사기 거래가 전체거래에 0.172% 차지하므로 위에서 살펴본 내용처럼 매우 imbalance한 특징을 가진 데이터셋입니다.
+
+[Credit Card Fraud Dectection 다운로드](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+
+
+데이터는 비
