@@ -387,7 +387,7 @@ plt.show()
 ```
 <p align="center"><img width="500" alt="image" src="https://user-images.githubusercontent.com/97882448/202404021-162db7c1-56aa-494a-9f5c-58eb9ed4cef0.png">
 
-threshold=3에 따른 confusion matrix임 실제 사기거래였을때 정상이라고 하는 상황을 최대한 줄이기 위해서 threshold를 생각보다 낮게 잡았음
+threshold=3에 따른 confusion matrix임 실제 사기거래였을때 정상이라고 하는 상황을 최대한 줄이기 위해서 threshold를 생각보다 낮게 잡았음 왜냐하면 정상인데 사기라고 했으면 확인하는 비용만 들지만 사기거래였는데 정상이라고 하면 회사에 타격이 엄청날것이라고 사료되었기 떄문임
 
 - ### 결론
   
